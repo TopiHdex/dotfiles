@@ -63,23 +63,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
--- You'll find a list of language servers here:
+-- Language servers here:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
--- These are example language servers. 
-require('lspconfig').ts_ls.setup({})
-require('lspconfig').eslint.setup({})
-require('lspconfig').pyright.setup({})
-require('lspconfig').somesass_ls.setup({})
-require('lspconfig').cssls.setup({})
-require('lspconfig').cssmodules_ls.setup({})
-require('lspconfig').emmet_language_server.setup({})
-require('lspconfig').astro.setup({
-    init_options = {
-        typescript = {
-            tsdk = 'node_modules/typescript/lib'
-        }
-    },
-})
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("eslint")
+vim.lsp.enable("pyright")
+vim.lsp.enable("somesass_ls")
+vim.lsp.enable("cssls")
+vim.lsp.enable("cssmodules_ls")
+vim.lsp.enable("emmet_language_server")
 
 local cmp = require('cmp')
 

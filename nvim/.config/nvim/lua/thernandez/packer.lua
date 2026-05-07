@@ -19,12 +19,16 @@ return require('packer').startup(function(use)
     --   	  vim.cmd('colorscheme gruvbox-material')
     --     end
     -- })
-    -- use({'f4z3r/gruvbox-material.nvim'})
-    -- use('navarasu/onedark.nvim')
+    use({'f4z3r/gruvbox-material.nvim'})
+    use('navarasu/onedark.nvim')
     use('EdenEast/nightfox.nvim')
     use('rebelot/kanagawa.nvim')
     use('windwp/nvim-ts-autotag')
-    use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        branch = 'master',
+        run = ':TSUpdate'
+    }
 
     use({'neovim/nvim-lspconfig'})
     use({'hrsh7th/nvim-cmp'})
