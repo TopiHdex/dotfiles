@@ -40,8 +40,8 @@ config.window_decorations = "NONE | RESIZE"
 config.keys = {
 	-- Define a custom key binding for closing the current pane
 	{ key="w", mods="CTRL|SHIFT", action=wezterm.action{ CloseCurrentPane={ confirm=true } } },
-    { key = "Tab", action = wezterm.action.SendKey{key = "Escape"} },
-    { key = "Escape", action = wezterm.action.SendKey{key = "Tab"} },
+    -- { key = "Tab", action = wezterm.action.SendKey{key = "Escape"} },
+    -- { key = "Escape", action = wezterm.action.SendKey{key = "Tab"} },
     { key = ";", mods = "CTRL", action = act.EmitEvent("toggle-tabbar") },
     -- Switch to the default workspace
     {
@@ -51,7 +51,7 @@ config.keys = {
             name = 'default',
         },
     },
-    -- Switch to a monitoring workspace, which will have `top` launched into it
+    -- Switch to a monitoring workspace, which will have ⁠ top ⁠ launched into it
     {
         key = 'u',
         mods = 'CTRL|SHIFT',
@@ -83,7 +83,7 @@ config.keys = {
                 { Text = 'Enter name for new workspace' },
             },
             action = wezterm.action_callback(function(window, pane, line)
-                -- line will be `nil` if they hit escape without entering anything
+                -- line will be ⁠ nil ⁠ if they hit escape without entering anything
                 -- An empty string if they just hit enter
                 -- Or the actual line of text they wrote
                 if line then
@@ -97,14 +97,41 @@ config.keys = {
             end),
         },
     },
+    {
+        key = 'E',
+        mods = 'CTRL|SHIFT',
+        action = act.PromptInputLine {
+            description = 'Enter new name for tab',
+            initial_value = 'My Tab Name',
+            action = wezterm.action_callback(function(window, pane, line)
+                -- line will be ⁠ nil ⁠ if they hit escape without entering anything
+                -- An empty string if they just hit enter
+                -- Or the actual line of text they wrote
+                if line then
+                    window:active_tab():set_title(line)
+                end
+            end),
+        },
+    },
+}
+
+config.ssh_domains = {
+  {
+    -- This name identifies the domain
+    name = 'pc',
+    -- The hostname or address to connect to. Will be used to match settings
+    -- from your ssh config file
+    remote_address = '192.168.178.71',
+    -- The username to use on the remote host
+    username = 'topi',
+  },
 }
 
 local act = wezterm.action
 
 wezterm.on('update-right-status', function(window, pane)
-  window:set_right_status(window:active_workspace())
+    window:set_right_status(window:active_workspace())
 end)
 
 -- and finally, return the configuration to wezterm
 return config
-
