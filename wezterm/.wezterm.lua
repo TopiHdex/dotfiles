@@ -20,6 +20,7 @@ end)
 -- config.window_background_opacity = 0.8
 -- config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
+config.native_macos_fullscreen_mode = true
 
 config.font_size = 16.0
 config.font = wezterm.font 'JetBrainsMono Nerd Font Mono'
